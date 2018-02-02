@@ -33,14 +33,14 @@
 
 let $rows = 6
 let $columns = 6
+let $connectWhat = 4
 
 let $fillInBoard = "X"
-
+let $turn = "X"
 
 //For adding the click event
-
 let $rowBasket = [];
-	for(i = 0; i < $columns; i++) {
+	for(i = 0; i <= $columns; i++) {
 		$rowBasket[i] = $rows
 	}
 
@@ -89,55 +89,54 @@ function checker() {
 
 //Create a function that fills the squares from the bottom up
 
-//For each case selected (column) we want to add a game piece to the last row in the node list of rows.  Switch statement??
+//For each case selected (column) we want to add a game piece to the last row in the node list of rows.  Switch statement?? ----> NO YOU IDIOT, check this out....
+
+//Create the "pieces" for each click event
+
+//*** BONUS *** Create an event to add piece played from the computer
+let $currentCoordinate = [];
 
 function bottomsUp() {
 	let $currentColumn = $(this).attr("class")
 	let $columnNumber = parseInt($currentColumn[4])
-	console.log($columnNumber)
+	$turn = ($turn === "X") ? "O" : "X"
 	
-if($rowBasket[$columnNumber-1] >= 0) {
-	if($(`.row-${$rowBasket[$columnNumber -1]} .${$currentColumn}`).text() === "X"){
-		$rowBasket[$columnNumber -1] --
-		$(`.row-${$rowBasket[$columnNumber -1]} .${$currentColumn}`).text("X")
-	} else {
-		$(`.row-${$rowBasket[$columnNumber -1]} .${$currentColumn}`).text("X");
+	if($rowBasket[$columnNumber-1] >= 0) {
+		if($(`.row-${$rowBasket[$columnNumber -1]} .${$currentColumn}`).text() === "X" || $(`.row-${$rowBasket[$columnNumber -1]} .${$currentColumn}`).text() === "O"){
+			
+			$rowBasket[$columnNumber -1] --
+			$currentCoordinate = [$rowBasket[$columnNumber - 1] , $columnNumber - 1]
+			
+			$(`.row-${$rowBasket[$columnNumber -1]} .${$currentColumn}`).text($turn)
+
+			// create a check for win function here
+			
+
+			console.log($currentCoordinate)
+
+		} else {
+			
+			$currentCoordinate = [$rowBasket[$columnNumber - 1] , $columnNumber - 1]
+			
+			$(`.row-${$rowBasket[$columnNumber -1]} .${$currentColumn}`).text($turn);
+			
+			// create a check for win function here
+
+			console.log($currentCoordinate)
+		}
 	}
-
-}
-		//change the text of the blocks incrementally
-
-		//$currentColumn.text("X")
 }	
 
-
-	//console.log($currentClass)
-	// switch ($currentClass) {
-	// 	case "col-1":
-	// 	console.log(`I worked for ${$currentClass}`);
-	// 	break;
-	// 	case "col-1":
-	// 	console.log(`I worked for ${$currentClass}`);
-	// 	break;
-	// 	case "col-1":
-	// 	console.log(`I worked for ${$currentClass}`);
-	// 	break;
-	// }
-
-
-
-
-
-
-//Create the "pieces" for each click event
-
-//Create an event to add piece played from the computer
-
+//console.log($currentCoordinate)
 //Create a "check for win" function
+
+	//check up
+	
+
 
 //Create winning screen
 
-//*** BONUS **** Create a new level && refracture the check for win with more than four matching tiles.
+//*** DOUBLE BONUS **** Create a new level && refracture the check for win with more than four matching tiles.
 
 
 
