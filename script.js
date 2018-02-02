@@ -33,7 +33,8 @@
 
 let rows = 6
 let columns = 7
-let gameBoard = [];
+
+//Create the game board
 
 function setUpGame() {
 
@@ -41,41 +42,32 @@ console.log(`building board`)
 
 let $mainDiv = $('body').append('<div id="playSpace"></div>')
 let $wholeTable = $(`<table></table>`).appendTo($mainDiv)
-// let $mainTr = $(`<tr id="mainTr"></tr>`).appendTo($wholeTable)
-// 	for (let i = 0; i < columns; i++) {
-// 		let $column = $(`<td><table id="column${i}">test</table></td>`).appendTo($mainTr)
-// 		for (let j=0; j < rows; j++) {
-// 		 let $row = $(`<tr><td id="row${j}">${j}</td></tr>`)
-// 		}
-// 	}
-
-
 for (let i = 0; i < rows; i++) {
-	let $row = $(`<tr id=row${i} class="game-board-row"></tr>`).appendTo($wholeTable)
+	let $row = $(`<tr class="row-${i}"></tr>`).appendTo($wholeTable)
 	for(let j = 0; j < columns; j++) {
-		let $uniqueSquare = $row.append(`<td id="column${j}" class="game-board-square">${j}</td>`)
+		let $uniqueSquare = $row.append(`<td class="col-${j}">row${i}col${j}</td>`)
 		}
 	}
 }
 setUpGame()
 
-// for each row, grab the nth item in the row and add it to a column
 
 
+//Create a click event for each column on the game board
 
-function clickFunction(){
-for(let i=0; i < rows; i++){
-	$(`#row${i}`).each(function(){
-		$(this).on("click", function(){
-			console.log(`I worked for every column`)
-			
-		})
-	})
-	}
-}
+$('.col-1').on("click", function(){
+	console.log("I worked!")
+})
 
-clickFunction();
+//Create the "pieces" for each click event
 
+//Create an event to add piece played from the computer
+
+//Create a "check for win" function
+
+//Create winning screen
+
+//*** BONUS **** Create a new level && refracture the check for win with more than four matching tiles.
 
 
 
