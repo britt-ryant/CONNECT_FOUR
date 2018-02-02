@@ -26,6 +26,10 @@ Step one: draw standard board and add pieces.
 	-use pieces as objects
 
 step two: write check win function
+	PART A
+	-create the check function for a standard size board to check for win
+	PART B
+	-restructure the function to check for any size board
 	-use recursive function to preform a win check
 	-create this function independant of the size of the board.
 
