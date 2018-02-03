@@ -108,8 +108,18 @@ function bottomsUp() {
 			$currentCoordinate = [$rowBasket[$columnNumber - 1] , $columnNumber - 1]
 			
 			$(`.row-${$rowBasket[$columnNumber -1]} .${$currentColumn}`).text($turn)
+			let $currentSquare = $(`.row-${$rowBasket[$columnNumber -1]} .${$currentColumn}`).text()
+			let $currentSquareDown = $(`.row-${($rowBasket[$columnNumber -1])+1} .${$currentColumn}`).text()
+
 
 			// create a check for win function here
+			//check up
+
+			console.log($currentSquare)
+			//test up
+			if($currentSquare === $currentSquareDown){
+				console.log($currentCoordinate[1] - 1, `Im working!!!`) 
+			}
 			
 
 			console.log($currentCoordinate)
@@ -121,8 +131,9 @@ function bottomsUp() {
 			$(`.row-${$rowBasket[$columnNumber -1]} .${$currentColumn}`).text($turn);
 			
 			// create a check for win function here
-
+			let $currentSquare = $(`.row-${$rowBasket[$columnNumber -1]} .${$currentColumn}`).text()
 			console.log($currentCoordinate)
+			console.log($currentSquare)
 		}
 	}
 }	
