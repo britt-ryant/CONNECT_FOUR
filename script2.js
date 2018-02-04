@@ -126,9 +126,10 @@ function modifyArray(){
 	}
 	console.log(arr)
 	//console.log(rowClicked)
-	console.log(rowFill)
+	//console.log(rowFill)
 
 	repaintBoard()
+	checkWin()
 }
 
 //Now that the array has been modified, repaint the board to update the spaces taken up
@@ -148,6 +149,51 @@ let table = container.querySelector('table')
 		}
 	}
 }
+
+
+
+function checkWin() {
+	//Check for win 
+	for(let i = 0; i < arr.length; i++){
+		for(let j = 0; j < arr.length; j ++){
+			
+			//Test for win down
+
+			if(i <= 2){	
+				if(arr[i][j] === arr[i + 1][j] && arr[i + 1][j] === arr[i + 2][j] && arr[i + 2][j] === arr[i + 3][j] && arr[i][j] !== 0){
+					
+
+					console.log(`---->WINNER<----`)
+					winningScreen()
+			
+			//Test for a win diagonally in both directions				
+
+				} else if(arr[i][j] === arr[i + 1][j-1] && arr[i + 1][j-1] === arr[i + 2][j-2] && arr[i + 2][j-2] === arr[i + 3][j-3] && arr[i][j] !== 0){
+					
+
+					console.log(`---->WINNER<----`)
+					winningScreen()
+				
+
+				} else if(arr[i][j] === arr[i + 1][j+1] && arr[i + 1][j+1] === arr[i + 2][j+2] && arr[i + 2][j+2] === arr[i + 3][j+3] && arr[i][j] !== 0){
+
+					console.log(`---->WINNER<----`)
+					winningScreen()
+				}
+			
+			//Test right and left for Win
+
+			} else if(j >= 3){
+				if(arr[i][j] === arr[i][j-1] && arr[i][j-1] === arr[i][j-2] && arr[i][j-2] === arr[i][j-3] && arr[i][j] !== 0){
+					
+					console.log(`--->WINNER!<---`)
+					winningScreen()
+				}	
+			}
+		}
+	}
+}
+
 
 
 
