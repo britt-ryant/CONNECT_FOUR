@@ -133,7 +133,9 @@ function modifyArray(){
 	}
 	console.log(arr)
 	repaintBoard()
-	johnWinFunction(currentXpos, currentYpos)	
+	//johnWinFunction(currentXpos, currentYpos)
+	checkDown(currentXpos, currentYpos)	
+	checkSideways(currentXpos, currentYpos)
 }
 
 
@@ -157,191 +159,51 @@ let table = container.querySelector('table')
 }
 
 
+//*************************  TEST FUNCTION  *********************************
+
+
+function tapped () {
+	console.log(`IM IN!`)
+}
+
+//*************************  TEST FUNCTION  *********************************
+
+
 winArr = [0,0]
 
 
-function johnWinFunction(currentXpos,currentYpos){
-	console.log(currentXpos, currentYpos)
-	let n = currentYpos
-	let o = 0
-		while(n + 1 < arr.length){
-			checkDown(currentXpos, currentYpos)
-			n ++ 
-		}
-	winArr[0] = 0
-		while(o < arr.length){
-			checkRight(currentXpos, currentYpos)
-			o++
-		}
-	}
+// function johnWinFunction(currentXpos,currentYpos){
+// 	//console.log(currentXpos, currentYpos)
+// 	if(currentYpos + 1 < arr.length){
+// 		checkDown(currentXpos, currentYpos)
+// 	} else {
+// 		checkSideways(currentXpos, currentYpos)
+// 	}
+// }
 
 function checkDown(currentXpos,currentYpos){
-	console.log(`Im working`)
-	winArr[0]++
-	console.log(winArr)
-	winningScreen()
+	//console.log(`Im working`)
+	if(currentYpos + 1 < arr.length){
+		if(arr[currentYpos][currentXpos] === arr[currentYpos + 1][currentXpos]){
+			winArr[0]++
+			winningScreen()
+			checkDown(currentXpos, currentYpos + 1)
+			winArr[0] = 0
+		}
+		console.log(winArr)
+	}
 }
 
-function checkRight(currentXpos, currentYpos){
-	console.log(`working sideways`)
-		if(arr[currentYpos][currentXpos + 1] < arr.length){
-			if(arr[currentYpos][currentXpos] === arr[currentYpos][currentXpos + 1]{
-			console.log(`Shit basket`)
+function checkSideways(currentXpos, currentYpos) {
+	console.log(currentXpos)
+ 	let n = arr.length -1
+ 	while (n >= 0) {
+		if(arr[currentYpos][n] === arr[currentYpos][n - 1] && arr[currentYpos][n] !== 0)
+			tapped()
+			n --
 	}
 
 }
-}
-
-
-
-// function checkRight(currentXpos,currentYpos){
-// 	console.log(`IM BEING CALLED 2`)
-// 	if (arr[currentYpos][currentXpos] === arr[currentYpos][currentXpos - 1]){
-// 		console.log(`I am working`)
-// 		// if(arr[currentYpos][currentXpos] === 1){
-// 		// 	winArr[0] ++
-// 		// } else {
-// 		// 	winArr[1] ++
-// 		// }
-// 		// winningScreen()
-// 		// console.log(winArr);
-// 		// johnWinFunction(currentXpos, currentYpos + 1)
-// 	} else {
-// 		winArr[0] = 0
-// 	}
-// }
-// function checkWin() {
-// 	//Check for win 
-// 	for(let i = 0; i < arr.length; i++){
-// 		for(let j = 0; j < arr.length; j ++){
-			
-// 			//Test for win down
-
-// 			if(i <= 2 ){	
-// 				if(arr[i][j] === arr[i + 1][j] && arr[i + 1][j] === arr[i + 2][j] && arr[i + 2][j] === arr[i + 3][j] && arr[i][j] !== 0){
-					
-
-// 					console.log(`---->WIN<----`)
-// 					winningScreen()
-			
-// 			//Test for a win diagonally in both directions				
-
-// 				} else if(arr[i][j] === arr[i + 1][j-1] && arr[i + 1][j-1] === arr[i + 2][j-2] && arr[i + 2][j-2] === arr[i + 3][j-3] && arr[i][j] !== 0){
-					
-
-// 					console.log(`---->WINNER<----`)
-// 					winningScreen()
-				
-
-// 				} else if(arr[i][j] === arr[i + 1][j+1] && arr[i + 1][j+1] === arr[i + 2][j+2] && arr[i + 2][j+2] === arr[i + 3][j+3] && arr[i][j] !== 0){
-
-// 					console.log(`---->WINNER<----`)
-// 					winningScreen()
-// 				}
-			
-// 			//Test right and left for Win
-
-// 			} else if(j >= 3){
-// 				if(arr[i][j] === arr[i][j-1] && arr[i][j-1] === arr[i][j-2] && arr[i][j-2] === arr[i][j-3] && arr[i][j] !== 0){
-					
-// 					console.log(`--->WINNER!<---`)
-// 					winningScreen()
-// 				}	
-// 			}
-// 		}
-// 	}
-// }
-
-// let winCounterX = 0;
-// let winCounterO = 0;
-
-// // function recursiveWinCheck(a,b){
-// // 	console.log(`check initiated`)
-// // 	if (arr[a][b] === 0){
-// // 		if((a + 1 < arr.length)){
-// // 			console.log(a)
-// // 			return recursiveWinCheck(a + 1, b)
-// // 		} else {
-// // 			console.log(`col ${b}`)
-// // 			return recursiveWinCheck(0, b + 1)
-// // 		}
-// // 	} //else {
-// // 		//checkDown(a,b)
-// // 	//}
-// // }
-
-// // function checkDown(a,b){
-// // 	console.log(a,b)
-// // 	if((a) > arr.length) {
-// // 		return recursiveWinCheck(0, b + 1)
-// // 	} else if(arr[a][b] === arr[a + 1][b]){
-// // 		if(arr[a][b] === 1){
-// // 			console.log(`MATCH X`)
-// // 		} else {
-// // 			console.log(`MATCH O`)
-// // 		}
-// // 		return checkDown(a + 1, b);
-// // 	}
-// // }
-
-
-// function recursiveWinCheckDown(a,b){
-// 	if((a + 1) <= arr.length) {
-// 		if(arr[a][b] === 0){
-// 			//console.log(`Checking${a}${b}`)				
-// 			return recursiveWinCheckDown(a + 1, b);		
-// 		}
-// 			if (arr[a + 1][b] === arr[a][b] && arr[a][b] !== 0){
-// 				if(arr[a][b] === 1){
-// 					winCounterX ++
-// 				}else if(arr[a][b] === 2){
-// 					winCounterO ++
-// 				}
-// 				console.log(`MATCH${a}${b}`)
-// 				return recursiveWinCheckDown(a + 1, b);
-// 			}
-// 	} else if ((b+1) < arr[a].length){
-// 		return recursiveWinCheckDown(0, b + 1)
-// 	}
-// 		winningScreen()
-// 		winCounterX = 0
-// 		winCounterO = 0
-// }
-
-// // function recursiveWinCheckLR(a,b){
-// // 	if((b + 1) < arr.length) {
-// // 		if(arr[a][b] === 0){
-// // 			console.log(`Checking${a}${b}`)				
-// // 			return recursiveWinCheckLR(a, b + 1);		
-// // 		}
-// // 			if (arr[a][b] === arr[a][b + 1] && arr[a][b] !== 0){
-// // 				if(arr[a][b] === 1){
-// // 					winCounterX ++
-// // 				}else if(arr[a][b] === 2){
-// // 					winCounterO ++
-// // 				}
-// // 				console.log(winCounterO)
-// // 				console.log(winCounterX)
-// // 				console.log(`MATCH${a}${b}`)
-// // 				return recursiveWinCheckLR(a, b + 1);
-// // 			}
-// // 	} else if ((a + 1) < arr.length){
-// // 		return recursiveWinCheckLR(a + 1, 0)
-// // 		console.log(`Checking${a}${b}`)	
-// // 	}
-// // 		winningScreen()
-// // 		winCounterX = 0
-// // 		winCounterO = 0
-// // }
-
-
-// // function recursiveWinCheck(a,b){
-// // 	if(a + 1 < arr.length){
-// // 		arr[a][b] === arr[a + 1][b] ? console.log(`YES`) : console.log(`NO`)
-// // 	} else {
-// // 		console.log(`TESTED`)
-// // 	}
-// // }
 
 
 
