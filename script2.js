@@ -196,6 +196,9 @@ function checkWin() {
 
 
 
+function winningScreen() {
+	alert(`Winner`)
+}
 
 
 
