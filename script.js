@@ -31,9 +31,9 @@
 
 // If match, the function should follow the "match" and count to see how many "matches" there are in a row.
 
-let $rows = 6
-let $columns = 6
-let $connectWhat = 4
+let $rows = 8
+let $columns = 8
+let $connectWhat = 8
 
 let $fillInBoard = "X"
 let $turn = "X"
@@ -111,7 +111,7 @@ function bottomsUp() {
 	console.log($xCoord-1)
 	//console.log($columnNumber)
 
-	if($rowBasket[$xCoord] >= 0 && $rowBasket[$xCoord] <= 6) {
+	if($rowBasket[$xCoord] >= 0 && $rowBasket[$xCoord] <= $columns) {
 
 		$(`.row-${$yCoord} .col-${$xCoord}`).text($turn);
 			
@@ -136,7 +136,7 @@ function bottomsUp() {
 
 					$checkCounter ++
 
-						if ($checkCounter === 3){
+						if ($checkCounter === $connectWhat -1){
 							alert(`WINNER`)
 						}
 
@@ -154,7 +154,7 @@ function bottomsUp() {
 
 					$checkCounter ++
 
-						if ($checkCounter === 3){
+						if ($checkCounter === $connectWhat -1){
 							alert(`WINNER`)
 						}
 
@@ -172,7 +172,7 @@ function bottomsUp() {
 
 					$checkCounter ++
 
-						if ($checkCounter === 3){
+						if ($checkCounter === $connectWhat -1){
 							alert(`WINNER`)
 						}
 
@@ -190,7 +190,7 @@ function bottomsUp() {
 
 					$checkCounter++
 
-					if($checkCounter === 2) {
+					if($checkCounter === $connectWhat-2) {
 						alert(`WINNER`)
 					}
 				} else {
@@ -205,7 +205,7 @@ function bottomsUp() {
 
 					$checkCounter++
 
-					if($checkCounter === 2) {
+					if($checkCounter === $connectWhat -2) {
 						alert(`WINNER`)
 					}
 				} else {
@@ -219,7 +219,7 @@ function bottomsUp() {
 
 					$checkCounter++
 
-					if($checkCounter === 3) {
+					if($checkCounter === $connectWhat - 1) {
 						alert(`WINNER`)
 					}
 				} else {
@@ -233,7 +233,7 @@ function bottomsUp() {
 
 					$checkCounter++
 
-					if($checkCounter === 3) {
+					if($checkCounter === $connectWhat - 1) {
 						alert(`WINNER`)
 					}
 				} else {
@@ -247,7 +247,7 @@ function bottomsUp() {
 
 					$checkCounter++
 
-					if($checkCounter === 2) {
+					if($checkCounter === $connectWhat - 2) {
 
 						alert(`WINNER`) 
 					}
@@ -263,7 +263,7 @@ function bottomsUp() {
 
 					$checkCounter++
 
-					if($checkCounter === 2) {
+					if($checkCounter === $connectWhat - 2) {
 
 						alert(`WINNER`) 
 					}
@@ -279,7 +279,7 @@ function bottomsUp() {
 
 					$checkCounter++
 
-					if($checkCounter === 2) {
+					if($checkCounter === $connectWhat -2) {
 
 						alert(`WINNER`) 
 					}
@@ -295,7 +295,7 @@ function bottomsUp() {
 
 					$checkCounter++
 
-					if($checkCounter === 2) {
+					if($checkCounter === $connectWhat-2) {
 
 						alert(`WINNER`) 
 					}
