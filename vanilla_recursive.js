@@ -198,13 +198,30 @@ function checkSideways(currentXpos, currentYpos) {
 	console.log(currentXpos)
  	let n = arr.length -1
  	while (n >= 0) {
-		if(arr[currentYpos][n] === arr[currentYpos][n - 1] && arr[currentYpos][n] !== 0)
+		if(arr[currentYpos][n] === arr[currentYpos][n - 1] && arr[currentYpos][n] !== 0){
 			tapped()
-			n --
+			winArr[1]++
+			winningScreen()
+		}
+		n --
 	}
-
+	console.log(winArr)
+	//horizontalCheck()
+	winArr[1] = 0
 }
 
+//*************************  TEST FUNCTION  *********************************
+
+function horizontalCheck(){
+	winArr[1]++
+	console.log(winArr)
+}
+
+
+
+
+
+//*************************  TEST FUNCTION  *********************************
 
 
 
