@@ -41,7 +41,7 @@ let $rowBasket = [];
 //*******************************  GLOBAL VARIABLES  *****************************
 
 function landingScreen(){
-	let $title = $(`body`).append(`<header id='title' class='start_screen in_game'><h1>X Connect O</h1></header>`)
+	let $title = $(`body`).append(`<header id='title' class='start_screen in_game'><h1>Connect 4</h1></header>`)
 	$($title).toggleClass(`start_screen`)
 	let $descritpion = $(`#title`).append(`<h2 id=description>Click the name of the game to play!</h2>`)
 	$(`#title`).on("click", eventListenerTitle)
