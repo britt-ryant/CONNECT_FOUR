@@ -136,6 +136,7 @@ function modifyArray(){
 	//johnWinFunction(currentXpos, currentYpos)
 	checkDown(currentXpos, currentYpos)	
 	checkSideways(currentXpos, currentYpos)
+	checkDiag(currentXpos, currentYpos)
 }
 
 
@@ -164,12 +165,13 @@ let table = container.querySelector('table')
 
 function tapped () {
 	console.log(`IM IN!`)
+	console.log(currentXpos, currentYpos)
 }
 
 //*************************  TEST FUNCTION  *********************************
 
 
-winArr = [0,0]
+winArr = [0,0,0]
 
 
 // function johnWinFunction(currentXpos,currentYpos){
@@ -190,25 +192,42 @@ function checkDown(currentXpos,currentYpos){
 			checkDown(currentXpos, currentYpos + 1)
 			winArr[0] = 0
 		}
-		console.log(winArr)
+		//console.log(winArr)
 	}
 }
 
 function checkSideways(currentXpos, currentYpos) {
-	console.log(currentXpos)
- 	let n = arr.length -1
- 	while (n >= 0) {
-		if(arr[currentYpos][n] === arr[currentYpos][n - 1] && arr[currentYpos][n] !== 0){
-			tapped()
-			winArr[1]++
-			winningScreen()
+	//console.log(currentXpos)
+	 	let n = arr.length -1
+	 	while (n >= 0) {
+			if(arr[currentYpos][n] === arr[currentYpos][n - 1] && arr[currentYpos][n] !== 0){
+				//tapped()
+				winArr[1]++
+				winningScreen()
+			}
+			n --
 		}
-		n --
-	}
-	console.log(winArr)
-	//horizontalCheck()
-	winArr[1] = 0
+		//console.log(winArr)
+		//horizontalCheck()
+		winArr[1] = 0
 }
+
+function checkDiag(currentXpos, currentYpos) {
+	console.log(currentXpos, currentYpos)
+	//tapped();
+	if(currentYpos < arr.length){
+		if(currentXpos + 1 < arr.length){
+			console.log(currentXpos, currentYpos)
+			if(arr[currentYpos][currentXpos] === arr[currentYpos - 1][currentXpos + 1] && arr[currentYpos][currentXpos] !== 0){
+				tapped();
+			}
+			
+		}
+		
+	}
+}
+
+
 
 //*************************  TEST FUNCTION  *********************************
 
@@ -216,10 +235,6 @@ function horizontalCheck(){
 	winArr[1]++
 	console.log(winArr)
 }
-
-
-
-
 
 //*************************  TEST FUNCTION  *********************************
 
