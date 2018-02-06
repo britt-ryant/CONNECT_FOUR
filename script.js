@@ -31,22 +31,50 @@
 
 // If match, the function should follow the "match" and count to see how many "matches" there are in a row.
 
-let $rows = 6
-let $columns = 6
+
+
+function landingScreen(){
+	let $title = $(`body`).append(`<header id='title' class='start_screen in_game'><h1>Connect</h1></header>`)
+	$($title).toggleClass(`start_screen`)
+	let $descritpion = $(`#title`).append(`<h2 id=description>Click the name of the game to play!</h2>`)
+	$(`#title`).on("click", eventListenerTitle)
+	$(`body`).append(`<div>How many would you like to connect?</div>`)
+	$(`body`).append(`<input class="what_to_connect" id="board_size" type='text'>`)
+	$(`body`).append(`<div id="player_title">Player Names</div>`)
+	$('body').append(`<div class='player' id='player'></div>`)
+	$('.player').append(`<input class="newPlayer" type="text" name='Player One' value=''/><div>vs.</div><input class="newPlayer" type="text" name='Player Two' value=''/>`)
+}
+landingScreen()
+
+
+function eventListenerTitle(){
+	setUpGame()
+	$(`#title`).off('click', eventListenerTitle)
+	$(`#description`).remove()
+	$(`#title`).toggleClass(`in_game`)
+
+
+}
+
+
+//*******************************  GLOBAL VARIABLES  *****************************
+
 let $connectWhat = 4
+let $rows = $connectWhat + 2
+let $columns = $connectWhat + 2
 
 let $fillInBoard = "X"
 let $turn = "X"
+let $checkCounter = 0
+
+//*******************************  GLOBAL VARIABLES  *****************************
+
 
 //For adding the click event
 let $rowBasket = [];
 	for(i = 0; i <= $columns; i++) {
 		$rowBasket[i] = $rows
 	}
-
-let $checkCounter = 0
-
-
 
 //Create the game board
 
@@ -58,28 +86,30 @@ console.log(`building board`)
 
 let $mainDiv = $('body').append('<div id="playSpace"></div>')
 let $wholeTable = $(`<table></table>`).appendTo($mainDiv)
+$($(`#player`)).appendTo(`body`)
+$($(`.newPlayer`)).toggleClass(`newPlayer`)
+
 
 //The below for loop creates the rows "<tr>" and colums "<td>"
 
 for (let i = 0; i < $rows; i++) {
 	let $row = $(`<tr class="row-${i + 1}"></tr>`).appendTo($wholeTable)
 	for(let j = 0; j < $columns; j++) {
-		// let $eachSquare = $row.append(`<td class="col-${j}">row${i} col${j}</td>`)
 		let $eachSquare = $row.append(`<td class="col-${j + 1}"> </td>`)
 		}
 	}
+clickEvent()
 }
 
-setUpGame()
 
 
 //Create a click event for each column on the game board
+
 function clickEvent(){
 	for(let i = 0; i <= $columns; i++){
 		$(`.col-${i}`).on("click", bottomsUp)
 	}
 }
-clickEvent()
 
 //This funciton is unused in the final game, just provided as a coordinate checker for the click function
 
@@ -111,7 +141,7 @@ function bottomsUp() {
 	console.log($xCoord-1)
 	//console.log($columnNumber)
 
-	if($rowBasket[$xCoord] >= 0 && $rowBasket[$xCoord] <= 6) {
+	if($rowBasket[$xCoord] >= 0 && $rowBasket[$xCoord] <= $rows) {
 
 		$(`.row-${$yCoord} .col-${$xCoord}`).text($turn);
 			
@@ -136,8 +166,8 @@ function bottomsUp() {
 
 					$checkCounter ++
 
-						if ($checkCounter === 3){
-							alert(`WINNER`)
+						if ($checkCounter === $connectWhat - 1){
+							winningScreen()
 						}
 
 				} else {
@@ -154,8 +184,8 @@ function bottomsUp() {
 
 					$checkCounter ++
 
-						if ($checkCounter === 3){
-							alert(`WINNER`)
+						if ($checkCounter === $connectWhat - 1){
+							winningScreen()
 						}
 
 				} else {
@@ -172,8 +202,8 @@ function bottomsUp() {
 
 					$checkCounter ++
 
-						if ($checkCounter === 3){
-							alert(`WINNER`)
+						if ($checkCounter === $connectWhat - 1){
+							winningScreen()
 						}
 
 				} else {
@@ -190,8 +220,8 @@ function bottomsUp() {
 
 					$checkCounter++
 
-					if($checkCounter === 2) {
-						alert(`WINNER`)
+					if($checkCounter === $connectWhat - 2) {
+						winningScreen()
 					}
 				} else {
 					$checkCounter = 0
@@ -205,8 +235,8 @@ function bottomsUp() {
 
 					$checkCounter++
 
-					if($checkCounter === 2) {
-						alert(`WINNER`)
+					if($checkCounter === $connectWhat - 2) {
+						winningScreen()
 					}
 				} else {
 					$checkCounter = 0
@@ -219,8 +249,8 @@ function bottomsUp() {
 
 					$checkCounter++
 
-					if($checkCounter === 3) {
-						alert(`WINNER`)
+					if($checkCounter === $connectWhat - 1) {
+						winningScreen()
 					}
 				} else {
 					$checkCounter = 0
@@ -233,8 +263,8 @@ function bottomsUp() {
 
 					$checkCounter++
 
-					if($checkCounter === 3) {
-						alert(`WINNER`)
+					if($checkCounter === $connectWhat - 1) {
+						winningScreen()
 					}
 				} else {
 					$checkCounter = 0
@@ -247,9 +277,9 @@ function bottomsUp() {
 
 					$checkCounter++
 
-					if($checkCounter === 2) {
+					if($checkCounter === $connectWhat - 2) {
 
-						alert(`WINNER`) 
+						winningScreen() 
 					}
 				} else {
 					
@@ -263,9 +293,9 @@ function bottomsUp() {
 
 					$checkCounter++
 
-					if($checkCounter === 2) {
+					if($checkCounter === $connectWhat - 2) {
 
-						alert(`WINNER`) 
+						winningScreen() 
 					}
 				} else {
 					
@@ -279,9 +309,9 @@ function bottomsUp() {
 
 					$checkCounter++
 
-					if($checkCounter === 2) {
+					if($checkCounter === $connectWhat - 2) {
 
-						alert(`WINNER`) 
+						winningScreen() 
 					}
 				} else {
 					
@@ -295,9 +325,9 @@ function bottomsUp() {
 
 					$checkCounter++
 
-					if($checkCounter === 2) {
+					if($checkCounter === $connectWhat - 2) {
 
-						alert(`WINNER`) 
+						winningScreen() 
 					}
 				} else {
 					
@@ -312,9 +342,6 @@ function bottomsUp() {
 			$rowBasket[$columnNumber - 1] --
 
 			console.log($xCoord, $yCoord)
-
-			//console.log($rowBasket)
-			//console.log($matchBasket)
 		
 		}
 	}		
@@ -322,7 +349,11 @@ function bottomsUp() {
 
 //Create winning screen
 
-//*** DOUBLE BONUS **** Create a new level && refracture the check for win with more than four matching tiles.
+function winningScreen(){
+	alert(`WINNER`)
+	$(`table`).remove()
+	$(`#playSpace`).append(`<h2 class='winning_screen'>WINNER!</h2`)
+}
 
 
 

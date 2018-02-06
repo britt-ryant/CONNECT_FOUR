@@ -1,13 +1,80 @@
 body {
 	text-align: center;
+	font-family: 'Orbitron', sans-serif;
+	background-color: black;
+	color: white;
 }
 #playSpace {
 	display: grid;
 	grid-gap: 10px;
 }
 
+table{
+	text-align: center;
+	margin: 0 auto;
+}
+
 td {
-	border: 2px solid black;
-	width: 20vw;
+	border: 2px dashed white;
+	width: 13vw;
 	height: 10vh;
+}
+
+.start_screen, .in_game{
+	font-size: 75px;
+	text-align: center;
+	width: 100%;
+	margin: 0 auto;
+
+}
+
+.start_screen{
+	font-size: 40px;
+	margin: 0 auto;
+	padding: 0, 10px, 0 10px;
+}
+
+#description{
+	font-size: 50px;
+}
+
+.winning_screen {
+	font-size: 100px;
+}
+.newPlayer {
+	font-family: 'Orbitron', sans-serif;
+	background-color: black;
+	color: white;
+	font-size: 25px;
+	text-align: center;
+	margin: 10px auto;
+	border: 2px dotted white;
+}
+
+input {
+	font-family: 'Orbitron', sans-serif;
+	background-color: black;
+	color: white;
+	font-size: 25px;
+	text-align: center;
+	margin: 10px auto;
+	border: none;
+
+}
+
+.player{
+	font-size: 25px;
+	text-align: center;
+}
+
+.what_to_connect {
+	border: 2px dotted white;
+	font-size: 25px;
+	width: 50px;
+}
+
+#player_title{
+	
+	padding: 20px;
+	margin: 20px, auto;
 }
