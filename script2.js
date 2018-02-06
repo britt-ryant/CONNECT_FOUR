@@ -33,6 +33,9 @@ let currentBoard = boardOne;
 //manipulate the DOM to create the main container div that will wrap around the table.
 
 function initiateStartScreen(){
+	
+//This function creates all of the text elements in the html file
+
 	let title = document.createElement(`h1`)
 	let body = document.querySelector(`body`)
 	title.classList.add(`title`)

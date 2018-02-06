@@ -13,7 +13,10 @@ body {
 	margin: 0 auto;
 
 }
-
+table{
+	margin: 0 auto;
+	font-size: 45px;
+}
 input {
 	width: 300px;
 	border: 2px dotted black;
@@ -36,9 +39,11 @@ input:Hover{
 }
 
 td {
-	border: 2px solid black;
-	width: 20vw;
+	border: 2px dotted black;
+	border-radius: 5px;
+	width: 13vw;
 	height: 10vh;
+	margin: 0 auto;
 }
 
 .title {
