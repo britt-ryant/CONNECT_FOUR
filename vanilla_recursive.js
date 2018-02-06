@@ -13,8 +13,9 @@ class Board {
 //creating the simple board from the constructor function of the board class
 
 const boardOne = new Board(4, 6);
+const boardTwo = new Board(8, 10);
 
-let currentBoard = boardOne;
+let currentBoard = boardTwo;
 //console.log(boardOne)
 
 //manipulate the DOM to create the main container div that will wrap around the table.
@@ -115,7 +116,6 @@ function modifyArray(){
 	let columnClicked = this.getAttribute(`class`)[5];
 	//Ternary argument to test who's turn it is.
 	turn = (turn === 1) ? 2 : 1;
-	//let rowClicked = this.parentElement.getAttribute(`class`)[5]
 	
 	for (let i = 0; i < arr.length; i ++) {
 		for (let j = 0; j < arr[i].length; j ++){
@@ -133,7 +133,6 @@ function modifyArray(){
 	}
 	console.log(arr)
 	repaintBoard()
-	//johnWinFunction(currentXpos, currentYpos)
 	checkDown(currentXpos, currentYpos)	
 	checkSideways(currentXpos, currentYpos)
 	checkDiagLeft(currentXpos, currentYpos)
@@ -174,15 +173,6 @@ function tapped () {
 
 winArr = [0,0,0,0]
 
-
-// function johnWinFunction(currentXpos,currentYpos){
-// 	//console.log(currentXpos, currentYpos)
-// 	if(currentYpos + 1 < arr.length){
-// 		checkDown(currentXpos, currentYpos)
-// 	} else {
-// 		checkSideways(currentXpos, currentYpos)
-// 	}
-// }
 
 function checkDown(currentXpos,currentYpos){
 	//console.log(`Im working`)
@@ -250,9 +240,6 @@ function checkDiagRight(currentXpos, currentYpos) {
 				console.log(winArr)
 				winningScreen()
 				return checkDiagRight(newXpos + 1, currentYpos + 1)
-			} else {
-				winArr[3] = 0;
-
 			}
 			
 		}
@@ -277,7 +264,7 @@ function horizontalCheck(){
 
 
 function winningScreen(){
-if(winArr.includes(boardOne.connect - 1)){
+if(winArr.includes(currentBoard.connect - 1)){
 			alert(`WINNER`)
 		}
 }
