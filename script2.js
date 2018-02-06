@@ -1,5 +1,14 @@
 //script2.js is the secondary file for Ryan's Project Unit_01.  In this file I will attempt to go back through my code and restructure it, solving the connect four board with a different method, using an array to represent the DOM, solving the connect four logic and representing it by repainting it on the DOM.  I will also be using Vanilla JavaScript instead of using Jquery to exercise my ability in both forms of DOM manipulation.
 
+
+//*************************  TEST FUNCTION  *********************************
+
+function tapped(){
+	console.log(`IM IN!!`)
+}
+
+//*************************  TEST FUNCTION  *********************************
+
 //First we want to create the board using a 6 X 6 matrix.
 
 class Board {
@@ -11,6 +20,9 @@ class Board {
 };
 
 //creating the simple board from the constructor function of the board class
+let turn = 2;
+let arr = []
+let rowFill = []
 
 const boardOne = new Board(4, 6);
 
@@ -19,21 +31,47 @@ let currentBoard = boardOne;
 
 //manipulate the DOM to create the main container div that will wrap around the table.
 
-const body = document.querySelector('body');
+function initiateStartScreen(){
+	let title = document.createElement(`h1`)
+	let body = document.querySelector(`body`)
+	title.classList.add(`title`)
+	body.appendChild(title)
+	title.innerHTML = "Connect 4"
+	let clickInstructions = document.createElement(`div`)
+	clickInstructions.classList.add(`clickInstructions`)
+	title.appendChild(clickInstructions)
+	clickInstructions.innerHTML = "click the title to begin"
+	title.addEventListener("click", clickInitiateFunction)
+	let inputOne = document.createElement('input')
+	inputOne.classList.add("input")
+	body.appendChild(inputOne)
+	let versus = document.createElement('div')
+	versus.classList.add('input')
+	versus.innerHTML = "vs."
+	body.appendChild(versus)
+	let inputTwo = document.createElement('input')
+	inputTwo.classList.add("input")
+	body.appendChild(inputTwo)
+	
+}
 
-const container = document.createElement('div');
+initiateStartScreen()
 
-container.classList.add("container")
-
-body.appendChild(container)
-
-let turn = 2;
-
-
-
+function clickInitiateFunction(){
+	//console.log(currentBoard)
+	document.querySelector(`.clickInstructions`).remove()
+	let inputs = document.querySelectorAll(`.input`)
+	inputs[0].classList.add("input_game_page")
+	inputs[2].classList.add("input_game_page")
+	console.log(inputs)
+	createArr(currentBoard)
+	//create the rowfill array
+		for(let i = 0; i < arr.length; i++){
+		rowFill[i] = arr.length - 1
+	}
+}
 //The function below creates an array that will act as the game, actions preformed "behind the scenes"
 
-let arr = []
 
 function createArr(obj) {
 	for(let i = 0; i < obj.size; i++) {
@@ -46,7 +84,7 @@ createBoard(arr)
 }
 
 
-createArr(currentBoard)
+//createArr(currentBoard)
 //console.log(arr)
 
 //*************************  TEST FUNCTION  *********************************
@@ -70,6 +108,10 @@ function testBoardAccess(){
 //function to maipulate the DOM to represent the array of arrays
 
 function createBoard(arr){
+	const body = document.querySelector('body');
+	const container = document.createElement('div');
+	container.classList.add("container")
+	body.appendChild(container)
 	let gameBoard = document.createElement('table');
 	gameBoard.classList.add("game-board");
 	container.appendChild(gameBoard);
@@ -100,10 +142,7 @@ function clickTestFunction() {
 
 //*************************  TEST FUNCTION  *********************************
 
-let rowFill = []
-	for(let i = 0; i < arr.length; i++){
-		rowFill[i] = arr.length - 1
-	}
+
 
 function modifyArray(){
 	let columnClicked = this.getAttribute(`class`)[5];
@@ -135,7 +174,7 @@ function modifyArray(){
 //Now that the array has been modified, repaint the board to update the spaces taken up
 
 function repaintBoard() {
-let table = container.querySelector('table')
+let table = document.querySelector('table')
 	for (let i = 0; i < arr.length; i ++){
 		for (let j = 0; j < arr.length; j++){
 			if (arr[i][j] === 1){
@@ -197,7 +236,31 @@ function checkWin() {
 
 function winningScreen() {
 
-	alert(`PLACE MODAL BOX HERE`)
+	//alert(`PLACE MODAL BOX HERE`)
+	let inputs = document.querySelectorAll('.input')
+	for(let i = 0; i < 3; i++){
+		inputs[i].remove()
+	}
+	document.querySelector(`table`).remove()
+	window.setTimeout(writeWinner, 500)
+	window.setTimeout(writeWinner, 1000)
+	window.setTimeout(writeWinner, 1500)
+	window.setTimeout(resetGame, 3000)
+
+}
+
+
+function writeWinner () {
+	let winScreen = document.createElement('h1')
+	winScreen.innerHTML = "WINNER!!"
+	winScreen.classList.add(`winner`)
+	let body = document.querySelector(`body`)
+	body.appendChild(winScreen)
+
+}
+
+function resetGame(){
+	location.reload();
 }
 
 

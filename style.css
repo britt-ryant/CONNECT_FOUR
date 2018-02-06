@@ -1,13 +1,59 @@
 body {
+	font-family: 'Press Start 2P', cursive;
 	text-align: center;
+	margin: 0 auto;
 }
 #playSpace {
 	display: grid;
 	grid-gap: 10px;
 }
 
+.container {
+	text-align: center;
+	margin: 0 auto;
+
+}
+
+input {
+	width: 300px;
+	border: 2px dotted black;
+	font-size: 20px;
+	font-family: 'Press Start 2P', cursive;
+	text-align: center;
+	margin: 10px auto;
+}
+
+input:Hover{
+	border: 2px dotted red;
+}
+
+.input_game_page{
+	border: none;
+}
+
+.input_game_page:Hover{
+	border: none;
+}
+
 td {
 	border: 2px solid black;
 	width: 20vw;
 	height: 10vh;
+}
+
+.title {
+	font-size: 65px;
+	padding: 50px 0 20px 0;
+	margin: 0 auto 30px auto;
+}
+
+.clickInstructions {
+	font-size: 20px;
+	padding: 50px auto;
+	/*border: 2px solid black;*/
+	margin: 50px auto;
+}
+.winner {
+	font-size: 65px;
+	color: red;
 }
