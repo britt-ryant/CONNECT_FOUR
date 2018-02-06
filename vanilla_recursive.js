@@ -136,7 +136,7 @@ function modifyArray(){
 	//johnWinFunction(currentXpos, currentYpos)
 	checkDown(currentXpos, currentYpos)	
 	checkSideways(currentXpos, currentYpos)
-	checkDiag(currentXpos, currentYpos)
+	checkDiagLeft(currentXpos, currentYpos)
 }
 
 
@@ -212,21 +212,29 @@ function checkSideways(currentXpos, currentYpos) {
 		winArr[1] = 0
 }
 
-function checkDiag(currentXpos, currentYpos) {
-	console.log(currentXpos, currentYpos)
+function checkDiagLeft(currentXpos, currentYpos) {
+	//console.log(currentXpos, currentYpos)
 	//tapped();
-	if(currentYpos < arr.length){
-		if(currentXpos + 1 < arr.length){
+	if(currentYpos + 1 < arr.length){
+		if(currentXpos - 1 >= 0){
 			console.log(currentXpos, currentYpos)
-			if(arr[currentYpos][currentXpos] === arr[currentYpos - 1][currentXpos + 1] && arr[currentYpos][currentXpos] !== 0){
-				tapped();
+			//tapped()
+			if(arr[currentYpos][currentXpos]=== arr[currentYpos + 1][currentXpos - 1]){
+				//tapped()
+				winArr[2] ++
+				console.log(winArr)
+				winningScreen()
+				return checkDiag(currentXpos - 1, currentYpos + 1)
 			}
 			
 		}
 		
 	}
+	
+	winArr[2] = 0;
 }
 
+console.log(winArr)
 
 
 //*************************  TEST FUNCTION  *********************************
@@ -245,6 +253,8 @@ if(winArr.includes(boardOne.connect - 1)){
 			alert(`WINNER`)
 		}
 }
+
+
 
 
 
