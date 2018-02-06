@@ -4,6 +4,7 @@ body {
 	background-color: black;
 	color: white;
 }
+
 #playSpace {
 	display: grid;
 	grid-gap: 10px;
@@ -35,7 +36,8 @@ td {
 }
 
 #description{
-	font-size: 50px;
+	font-size: 25px;
+	padding: 0 10px 50px 10px;
 }
 
 .winning_screen {
@@ -69,6 +71,12 @@ input {
 
 .what_to_connect {
 	border: 2px dotted white;
+	font-size: 25px;
+	width: 50px;
+}
+
+.what_to_connect_red {
+	border: 2px dotted red;
 	font-size: 25px;
 	width: 50px;
 }

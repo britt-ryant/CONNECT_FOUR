@@ -31,14 +31,21 @@
 
 // If match, the function should follow the "match" and count to see how many "matches" there are in a row.
 
+//*******************************  GLOBAL VARIABLES  *****************************
 
+let $connectWhat = 0;
+let $rows = 0;
+let $columns = 0;
+let $rowBasket = [];
+
+//*******************************  GLOBAL VARIABLES  *****************************
 
 function landingScreen(){
-	let $title = $(`body`).append(`<header id='title' class='start_screen in_game'><h1>Connect</h1></header>`)
+	let $title = $(`body`).append(`<header id='title' class='start_screen in_game'><h1>X Connect O</h1></header>`)
 	$($title).toggleClass(`start_screen`)
 	let $descritpion = $(`#title`).append(`<h2 id=description>Click the name of the game to play!</h2>`)
 	$(`#title`).on("click", eventListenerTitle)
-	$(`body`).append(`<div>How many would you like to connect?</div>`)
+	$(`body`).append(`<div id="board_size_question">How many would you like to connect?</div>`)
 	$(`body`).append(`<input class="what_to_connect" id="board_size" type='text'>`)
 	$(`body`).append(`<div id="player_title">Player Names</div>`)
 	$('body').append(`<div class='player' id='player'></div>`)
@@ -48,20 +55,32 @@ landingScreen()
 
 
 function eventListenerTitle(){
-	setUpGame()
-	$(`#title`).off('click', eventListenerTitle)
-	$(`#description`).remove()
-	$(`#title`).toggleClass(`in_game`)
+	console.log($(`#board_size`).val())
+	if(parseInt($(`#board_size`).val()) > 2 && parseInt($(`#board_size`).val()) <= 8) {	
+		$connectWhat = parseInt($(`#board_size`).val())
+		$rows = $connectWhat + 1;
+		$columns = $connectWhat + 1;
+		for(i = 0; i <= $columns; i++) {
+			$rowBasket[i] = $rows
+		}
 
-
+		console.log($connectWhat)
+		setUpGame()
+		$(`#title`).off('click', eventListenerTitle)
+		$(`#description`).remove()
+		$(`#board_size`).remove()
+		$(`#board_size_question`).remove()
+		$(`#player_title`).remove()
+		$(`#title`).toggleClass(`in_game`)
+	} else {
+		$(`#board_size`).removeClass()
+		$(`#board_size`).addClass(`what_to_connect_red`)
+		setTimeout(reloadHomePage, 500)
+	}
 }
 
 
 //*******************************  GLOBAL VARIABLES  *****************************
-
-let $connectWhat = 4
-let $rows = $connectWhat + 2
-let $columns = $connectWhat + 2
 
 let $fillInBoard = "X"
 let $turn = "X"
@@ -71,15 +90,12 @@ let $checkCounter = 0
 
 
 //For adding the click event
-let $rowBasket = [];
-	for(i = 0; i <= $columns; i++) {
-		$rowBasket[i] = $rows
-	}
 
 //Create the game board
 
 function setUpGame() {
 console.log(`building board`)
+console.log($rowBasket)
 
 
 //Function that builds the board pieces by creating a div element in html id=playSpace and appends a table to the div
@@ -141,7 +157,7 @@ function bottomsUp() {
 	console.log($xCoord-1)
 	//console.log($columnNumber)
 
-	if($rowBasket[$xCoord] >= 0 && $rowBasket[$xCoord] <= $rows) {
+	if($rowBasket[$xCoord] >= 0 && $rowBasket[$xCoord] <= $columns) {
 
 		$(`.row-${$yCoord} .col-${$xCoord}`).text($turn);
 			
@@ -350,13 +366,18 @@ function bottomsUp() {
 //Create winning screen
 
 function winningScreen(){
-	alert(`WINNER`)
+	//alert(`WINNER`)
 	$(`table`).remove()
+	$(`.player`).remove()
 	$(`#playSpace`).append(`<h2 class='winning_screen'>WINNER!</h2`)
+	setTimeout(reloadHomePage, 2000)
 }
 
+//reload the homepage
 
-
+function reloadHomePage(){
+	location.reload();
+}
 
 
 
