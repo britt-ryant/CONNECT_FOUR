@@ -137,6 +137,7 @@ function modifyArray(){
 	checkDown(currentXpos, currentYpos)	
 	checkSideways(currentXpos, currentYpos)
 	checkDiagLeft(currentXpos, currentYpos)
+	checkDiagRight(currentXpos, currentYpos)
 }
 
 
@@ -217,14 +218,14 @@ function checkDiagLeft(currentXpos, currentYpos) {
 	//tapped();
 	if(currentYpos + 1 < arr.length){
 		if(currentXpos - 1 >= 0){
-			console.log(currentXpos, currentYpos)
+			//console.log(currentXpos, currentYpos)
 			//tapped()
 			if(arr[currentYpos][currentXpos]=== arr[currentYpos + 1][currentXpos - 1]){
 				//tapped()
 				winArr[2] ++
 				console.log(winArr)
 				winningScreen()
-				return checkDiag(currentXpos - 1, currentYpos + 1)
+				return checkDiagLeft(currentXpos - 1, currentYpos + 1)
 			}
 			
 		}
@@ -232,6 +233,30 @@ function checkDiagLeft(currentXpos, currentYpos) {
 	}
 	
 	winArr[2] = 0;
+}
+
+
+function checkDiagRight(currentXpos, currentYpos) {
+	//console.log(currentXpos, currentYpos)
+	//tapped();
+	if(currentYpos + 1 < arr.length){
+		//console.log(currentXpos)
+		if(currentXpos < arr.length - 1){
+			if(arr[currentYpos][currentXpos] === arr[currentYpos + 1][currentXpos + 1]){
+				tapped()
+				//console.log(currentXpos, currentYpos)
+				//tapped()
+				//winArr[2] ++
+				//console.log(winArr)
+				//winningScreen()
+				//return checkDiag(currentXpos - 1, currentYpos + 1)
+			}
+			
+		}
+		
+	}
+	
+	//winArr[2] = 0;
 }
 
 console.log(winArr)
