@@ -166,13 +166,13 @@ let table = container.querySelector('table')
 
 function tapped () {
 	console.log(`IM IN!`)
-	console.log(currentXpos, currentYpos)
+	//console.log(currentXpos, currentYpos)
 }
 
 //*************************  TEST FUNCTION  *********************************
 
 
-winArr = [0,0,0]
+winArr = [0,0,0,0]
 
 
 // function johnWinFunction(currentXpos,currentYpos){
@@ -239,24 +239,27 @@ function checkDiagLeft(currentXpos, currentYpos) {
 function checkDiagRight(currentXpos, currentYpos) {
 	//console.log(currentXpos, currentYpos)
 	//tapped();
+	let newXpos = parseInt(currentXpos);
 	if(currentYpos + 1 < arr.length){
 		//console.log(currentXpos)
-		if(currentXpos < arr.length - 1){
-			if(arr[currentYpos][currentXpos] === arr[currentYpos + 1][currentXpos + 1]){
-				tapped()
-				//console.log(currentXpos, currentYpos)
+		if(newXpos + 1 < arr.length){
+			if(arr[currentYpos][newXpos] === arr[currentYpos + 1][newXpos + 1]){
 				//tapped()
-				//winArr[2] ++
-				//console.log(winArr)
-				//winningScreen()
-				//return checkDiag(currentXpos - 1, currentYpos + 1)
+				//console.log(currentXpos, currentYpos)
+				winArr[3] ++
+				console.log(winArr)
+				winningScreen()
+				return checkDiagRight(newXpos + 1, currentYpos + 1)
+			} else {
+				winArr[3] = 0;
+
 			}
 			
 		}
 		
 	}
 	
-	//winArr[2] = 0;
+	winArr[3] = 0;
 }
 
 console.log(winArr)
