@@ -2,66 +2,138 @@
 
 header {
 	text-align: center;
-	margin: 0 auto;
-	color: white;
-	background-color: black;
-	font-family: 'Shojumaru', cursive;
-	font-size: 100px;
-	border: 2px solid white;
+	margin: auto;
+	color: black;
+	background-color: white;
+	font-family: 'Nanum Pen Script', cursive;
+	font-size: 200px;
+	/*border: 2px solid black;*/
+	min-width: 620px;
 }
 
 header:hover {
-	color: red;
+	color: #e2d436;
 }
+
 
 body {
 	text-align: center;
-	background-color: black;
-	color: white;
-	font-family: 'Shojumaru', cursive;
-	border: 2px solid white;
-	font-size: 10px;
+	background-color: white;
+	color: black;
+	font-family: 'Nanum Pen Script', cursive;
+	/*border: 2px solid black;*/
+	font-size: 60px;
+	min-width: 620px;
+}
+
+.how_to_enter {
+/*	border: 2px solid black;*/
+	margin: 0 auto 10px auto;
+	font-size: 30px;
 }
 
 .instructions {
-	border: 2px solid white;
-	margin: 50px auto 20px auto;
-	font-size: 20px;
+/*	border: 2px solid black;*/
+	margin: 5px auto 10px auto;
+	font-size: 40px;
+	max-width: 800px;
+}
+
+.cartoon {
+/*	border: 2px solid black;*/
 }
 
 .input{
 	outline: none;
 	border: 0px;
-	border-bottom: 2px solid white;
-	font-family: 'Shojumaru', cursive;
-	font-size: 20px;
-	border: 2px solid white;
+	border-bottom: 2px dotted black;
+	font-family: 'Nanum Pen Script', cursive;
+	font-size: 40px;
+	/*border: 2px solid transparent;*/
 	background-color: transparent;
-	color: white;
+	color: black;
 	width: 60px;
 	text-align: center;
 }
 
 .input:Hover{
-	border-bottom: 5px solid red;
+	border-bottom: 5px dotted #b21c05;
+}
+
+.wrong_value {
+	border: 5px dotted #b21c05;
+	border-radius: 10px;
+
+}
+
+.warning{
+	color: #b21c05;
+	font-size: 40px;
 }
 
 .in_game{
-	font-size: 75px;
+	font-size: 125px;
 }
 
 .in_game:Hover{
-	color: white;
+	color: black;
 }
 
 #playSpace {
 	display: grid;
 	grid-gap: 10px;
 }
-
+table {
+	margin: 0 auto;
+	max-width: 1300px;
+}
 td {
-	color: white;
-	border: 2px solid white;
+	/*font-size: 40px;*/
+	color: black;
+	border: 2px dotted black;
+	border-radius: 10px;
 	width: 20vw;
 	height: 10vh;
+	margin: 0 auto;
 }
+
+.x_piece{
+	color: #b21c05;
+}
+.o_piece{
+	color: #e2d436;
+}
+.winner_board{
+	border: 5px dotted #b21c05;
+}
+.print_winner{
+	font-size: 200px;
+	color: red;
+}
+
+button {
+	width: 100px;
+	height: 50px;
+	margin: 25px auto;
+	background-color: transparent;
+	border: 2px dotted #b21c05;
+	border-radius: 10px;
+	font-family: 'Nanum Pen Script', cursive;
+	font-size: 35px;
+	color: #b21c05
+
+}
+
+.reset:Hover {
+	color: #e2d436
+	border: 3px dotted #e2d436;
+}
+
+
+
+
+
+
+
+
+

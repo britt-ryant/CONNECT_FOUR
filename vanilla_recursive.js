@@ -49,11 +49,16 @@ function startScreen(){
 	clickInstructions.innerHTML = `click the title to start the game`
 	body.appendChild(clickInstructions)
 
+	let cartoon = document.createElement(`img`)
+	cartoon.classList.add(`cartoon`)
+	cartoon.src = `http://gabrielutasi.com/comic/copyright/gabrielutasi/2008/10/101308speed_connect_four.gif`
+	body.appendChild(cartoon)
+
 	//create an input for the size of the board and a div above it that explains what to input
 
 	let inputInstructions = document.createElement(`h3`)
 	inputInstructions.classList.add(`instructions`)
-	inputInstructions.innerHTML = "How experienced are you? Input the number of tiles you want to connect."
+	inputInstructions.innerHTML = "How experienced are you? Input the number of tiles you want to connect. Please choose a number 2 - 8."
 	body.appendChild(inputInstructions)
 	let gameSizeSubmit = document.createElement('input')
 	gameSizeSubmit.classList.add("input")
@@ -67,34 +72,47 @@ startScreen()
 function gameStart(){
 
 	//create a new Object to set up the game
+
 	let gameSizeSubmitVal = document.querySelector(`.input`).value
 	let gameSize = parseInt(gameSizeSubmitVal)
-	let currentBoard = new Board(gameSize, gameSize + 2)
+	if(gameSize >= 2 && gameSize <= 8 ){
+		let currentBoard = new Board(gameSize, gameSize + 2)
+		console.log(currentBoard)
 
+		//First remove all of the formatting from the home screen except the title Div
 
-	//First remove all of the formatting from the home screen except the title Div
+		let inGameTitle = document.querySelector(`.title`)
+		inGameTitle.classList.add(`in_game`)
+		let clickInstructions = document.querySelector(`.how_to_enter`)
+		clickInstructions.remove()
+		let inputInstructions = document.querySelector(`.instructions`)
+		inputInstructions.remove()
+		let gameSizeSubmit = document.querySelector(`.input`)
+		gameSizeSubmit.remove()
+		let cartoon = document.querySelector(`img`)
+		cartoon.remove()
+		
+		//manipulate the DOM to create the main container div that will wrap around the table.
 
-	let inGameTitle = document.querySelector(`.title`)
-	inGameTitle.classList.add(`in_game`)
-	let clickInstructions = document.querySelector(`.how_to_enter`)
-	clickInstructions.remove()
-	let inputInstructions = document.querySelector(`.instructions`)
-	inputInstructions.remove()
-	let gameSizeSubmit = document.querySelector(`.input`)
-	gameSizeSubmit.remove()
-	
-	//manipulate the DOM to create the main container div that will wrap around the table.
+		let body = document.querySelector('body');
+		let container = document.createElement('div');
+		container.classList.add("container")
+		body.appendChild(container)
 
-	let body = document.querySelector('body');
-	let container = document.createElement('div');
-	container.classList.add("container")
-	body.appendChild(container)
+		//Call the function to create the board on the DOM and the array behind the scenes
 
-	//Call the function to create the board on the DOM and the array behind the scenes
+		//let currentBoard = boardOne;
+		createArr(currentBoard);	
 
-	//let currentBoard = boardOne;
-	createArr(currentBoard);	
-
+	} else {
+		let gameSizeSubmit = document.querySelector(`.input`)
+		gameSizeSubmit.classList.add(`wrong_value`)
+		let incorrectValue = document.createElement(`div`)
+		incorrectValue.classList.add(`warning`)
+		incorrectValue.innerHTML = `Please choose a number BETWEEN 2 AND 8!`
+		document.querySelector(`body`).appendChild(incorrectValue);
+		window.setTimeout(reload, 1000);
+	}
 }
 
 //*************************  TEST FUNCTION  *********************************
@@ -165,6 +183,11 @@ function createBoard(arr){
 			cell.addEventListener('click', modifyArray)
 		}
 	}
+	let resetButton = document.createElement(`button`)
+	resetButton.classList.add(`reset`)
+	resetButton.innerHTML = `Reset`
+	let body = document.querySelector(`body`)
+	body.appendChild(resetButton)
 
 }
 
@@ -221,10 +244,12 @@ function repaintBoard() {
 			for (let j = 0; j < arr.length; j++){
 				if (arr[i][j] === 1){
 					let cell = document.getElementById(`row-${i} col-${j}`)
+					cell.classList.add(`x_piece`)
 					cell.innerHTML = "X"
 					//console.log(cell)
 				} else if(arr[i][j] === 2){
 					let cell = document.getElementById(`row-${i} col-${j}`)
+					cell.classList.add(`o_piece`)
 					cell.innerHTML = "O"
 				}
 			}
@@ -377,13 +402,36 @@ function horizontalCheck(){
 //*************************  TEST FUNCTION  *********************************
 
 
-
 function winningScreen(){
 if(winArr.includes(arr.length - 3)){
-			alert(`WINNER`)
+			//alert(`WINNER`)
+			let board = document.querySelector(`table`)
+			board.classList.add(`winner_board`)
+			setTimeout(removeBoard, 1000)
+			setTimeout(printWinner, 1500)
+			setTimeout(printWinner, 2500)
+			setTimeout(printWinner, 3500)
+			setTimeout(reload, 5000)
 		}
 }
 
+function removeBoard(){
+	let board = document.querySelector(`table`)
+	board.remove()
+}
+
+function printWinner(){
+	let winner = document.createElement('div')
+	winner.classList.add(`print_winner`)
+	winner.innerHTML = `WINNER !!!`
+	let body = document.querySelector(`body`)
+	body.appendChild(winner)
+
+}
+
+function reload() {
+	location.reload()
+}
 
 
 
