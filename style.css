@@ -1,14 +1,19 @@
 /*This is the CSS stylesheet for my connect four game, specifically the game that corresponds to the vanilla_recursive.js*/
 
 header {
+	position: relative;
+	top: -30px;
+	display: inline-block;
 	text-align: center;
-	margin: auto;
+	margin: 0 auto;
 	color: black;
 	background-color: white;
 	font-family: 'Nanum Pen Script', cursive;
 	font-size: 200px;
 	/*border: 2px solid black;*/
+	height: 200px;
 	min-width: 620px;
+
 }
 
 header:hover {
@@ -27,24 +32,35 @@ body {
 }
 
 .how_to_enter {
-/*	border: 2px solid black;*/
-	margin: 0 auto 10px auto;
-	font-size: 30px;
+	position: relative;
+	top: -50px;
+	/*border: 2px solid black;*/
+	margin: 0 auto;
+	font-size: 20px;
 }
 
 .instructions {
-/*	border: 2px solid black;*/
-	margin: 5px auto 10px auto;
-	font-size: 40px;
+	position: relative;
+	top: -30px;
+	/*border: 2px solid black;*/
+	margin: 0 auto;
+	font-size: 30px;
 	max-width: 800px;
 }
 
 .cartoon {
+	position: relative;
+	top: -30px;
 /*	border: 2px solid black;*/
+	margin: 0 auto;
+	padding: none
 }
 
 .input{
+	position: relative;
+	top: -30px;
 	outline: none;
+	height: 30px;
 	border: 0px;
 	border-bottom: 2px dotted black;
 	font-family: 'Nanum Pen Script', cursive;
@@ -54,6 +70,7 @@ body {
 	color: black;
 	width: 60px;
 	text-align: center;
+	margin: 0 auto;
 }
 
 .input:Hover{
@@ -61,18 +78,24 @@ body {
 }
 
 .wrong_value {
+	position: relative;
+	top: -30px;
 	border: 5px dotted #b21c05;
 	border-radius: 10px;
 
 }
 
 .warning{
+	position: relative;
+	top: -30px;
 	color: #b21c05;
-	font-size: 40px;
+	font-size: 20px;
 }
 
 .in_game{
+	height: 200px;
 	font-size: 125px;
+/*	border: 2px dotted black;*/
 }
 
 .in_game:Hover{
@@ -111,7 +134,7 @@ td {
 	color: red;
 }
 
-button {
+.reset {
 	width: 100px;
 	height: 50px;
 	margin: 25px auto;
@@ -124,7 +147,7 @@ button {
 
 }
 
-.reset:Hover {
+.reset:hover {
 	color: #e2d436
 	border: 3px dotted #e2d436;
 }

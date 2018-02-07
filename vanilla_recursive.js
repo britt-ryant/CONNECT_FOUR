@@ -13,11 +13,14 @@ class Board {
 
 //creating the simple board from the constructor function of the board class
 
+
+//***********************  TEST BOARDS FOR WRITING CODE *************************
+
 const boardOne = new Board(4, 6);
 const boardTwo = new Board(8, 10);
 
+//***********************  TEST BOARDS FOR WRITING CODE *************************
 
-//console.log(boardOne)
 let turn = 2;
 
 let arr = []
@@ -25,6 +28,8 @@ let rowFill = []
 
 let currentXpos = 0;
 let currentYpos = 0;
+
+let currentBoardForReset = {};
 
 //***********************  GLOBAL VARIABLES  ********************************
 
@@ -34,7 +39,7 @@ let currentYpos = 0;
 function startScreen(){
 	
 	//Create a new HEADER tag for the title and add class
-	let mainTitle = document.createElement('Header');
+	let mainTitle = document.createElement('header');
 	mainTitle.classList.add('title');
 	mainTitle.innerHTML = "CONNECT"
 	
@@ -79,6 +84,10 @@ function gameStart(){
 		let currentBoard = new Board(gameSize, gameSize + 2)
 		console.log(currentBoard)
 
+		//Log the size of the current board for the reset board function
+		
+		currentBoardForReset = currentBoard
+
 		//First remove all of the formatting from the home screen except the title Div
 
 		let inGameTitle = document.querySelector(`.title`)
@@ -105,6 +114,9 @@ function gameStart(){
 		createArr(currentBoard);	
 
 	} else {
+
+		//create a new div that tells the user that they need to input a proper value
+
 		let gameSizeSubmit = document.querySelector(`.input`)
 		gameSizeSubmit.classList.add(`wrong_value`)
 		let incorrectValue = document.createElement(`div`)
@@ -143,8 +155,6 @@ function createArr(obj) {
 }
 
 
-//createArr(currentBoard)
-//console.log(arr)
 
 //*************************  TEST FUNCTION  *********************************
 
@@ -160,8 +170,6 @@ function testBoardAccess(){
 //testBoardAccess()
 
 //*************************  TEST FUNCTION  *********************************
-
-//console.log(arr)
 
 
 //function to maipulate the DOM to represent the array of arrays
@@ -183,11 +191,12 @@ function createBoard(arr){
 			cell.addEventListener('click', modifyArray)
 		}
 	}
-	let resetButton = document.createElement(`button`)
+	let resetButton = document.createElement(`div`)
 	resetButton.classList.add(`reset`)
 	resetButton.innerHTML = `Reset`
 	let body = document.querySelector(`body`)
 	body.appendChild(resetButton)
+	resetButton.addEventListener(`click`, resetBoard)
 
 }
 
@@ -206,6 +215,7 @@ function clickTestFunction() {
 
 function modifyArray(){
 	let columnClicked = this.getAttribute(`class`)[5];
+
 	//Ternary argument to test who's turn it is.
 	turn = (turn === 1) ? 2 : 1;
 	
@@ -223,7 +233,9 @@ function modifyArray(){
 
 		rowFill[columnClicked] --
 	}
-	console.log(arr)
+
+	//Call all of the test functions when each piece is placed, based on the current X and Y postion of the number modified in the array.  Within each test function, there is a call for the check win function that will determine if the "winArr" contains any values that are the winning value.  
+
 	repaintBoard()
 	checkDown(currentXpos, currentYpos)	
 	checkSideways(currentXpos, currentYpos)
@@ -402,6 +414,8 @@ function horizontalCheck(){
 //*************************  TEST FUNCTION  *********************************
 
 
+//win check function.  If any of the numbers in the win array are the value of the inputted match requirement, the game will terminate, the board will be outlined in red, removed and the words WINNER will be displayed.  Finally, the game will reload to the landing page.
+
 function winningScreen(){
 if(winArr.includes(arr.length - 3)){
 			//alert(`WINNER`)
@@ -415,10 +429,16 @@ if(winArr.includes(arr.length - 3)){
 		}
 }
 
+//Function to remove the board from the page to allow for WINNER to be printed
+
 function removeBoard(){
 	let board = document.querySelector(`table`)
 	board.remove()
+	let resetButton = document.querySelector(`.reset`)
+	resetButton.remove()
 }
+
+//Function to create the divs that say WINNER
 
 function printWinner(){
 	let winner = document.createElement('div')
@@ -429,9 +449,23 @@ function printWinner(){
 
 }
 
+//Function to repaint a blank board if the reset button is clicked
+
+function resetBoard(){
+	let table = document.querySelector(`table`)
+	let resetButton = document.querySelector(`.reset`)
+	table.remove()
+	resetButton.remove()
+	createArr(currentBoardForReset)
+
+}
+
+//Reload function for when the page needs to be reloaded
+
 function reload() {
 	location.reload()
 }
+
 
 
 
