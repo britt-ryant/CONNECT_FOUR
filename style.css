@@ -1,13 +1,67 @@
+/*This is the CSS stylesheet for my connect four game, specifically the game that corresponds to the vanilla_recursive.js*/
+
+header {
+	text-align: center;
+	margin: 0 auto;
+	color: white;
+	background-color: black;
+	font-family: 'Shojumaru', cursive;
+	font-size: 100px;
+	border: 2px solid white;
+}
+
+header:hover {
+	color: red;
+}
+
 body {
 	text-align: center;
+	background-color: black;
+	color: white;
+	font-family: 'Shojumaru', cursive;
+	border: 2px solid white;
+	font-size: 10px;
 }
+
+.instructions {
+	border: 2px solid white;
+	margin: 50px auto 20px auto;
+	font-size: 20px;
+}
+
+.input{
+	outline: none;
+	border: 0px;
+	border-bottom: 2px solid white;
+	font-family: 'Shojumaru', cursive;
+	font-size: 20px;
+	border: 2px solid white;
+	background-color: transparent;
+	color: white;
+	width: 60px;
+	text-align: center;
+}
+
+.input:Hover{
+	border-bottom: 5px solid red;
+}
+
+.in_game{
+	font-size: 75px;
+}
+
+.in_game:Hover{
+	color: white;
+}
+
 #playSpace {
 	display: grid;
 	grid-gap: 10px;
 }
 
 td {
-	border: 2px solid black;
+	color: white;
+	border: 2px solid white;
 	width: 20vw;
 	height: 10vh;
 }
