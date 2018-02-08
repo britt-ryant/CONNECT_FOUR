@@ -424,7 +424,7 @@ if(winArr.includes(arr.length - 3)){
 			setTimeout(removeBoard, 1000)
 			setTimeout(printWinner, 1500)
 			setTimeout(printWinner, 3000)
-			setTimeout(printWinner, 4500)
+			//setTimeout(printWinner, 4500)
 			setTimeout(reload, 6000)
 		}
 }
