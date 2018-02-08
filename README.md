@@ -1,51 +1,17 @@
 *** Ryan Britt/ 02/01/2018 ***  
-# Connect Your Skill Proposal  
-## What is Connect Your Skill?  
-Connect four, with a twist.  I would like to create a connect four game using Javascript.
-This game will start out as standard connect four and ideally as you win, the size of the game expands(connect five, connect 6, connect 7, connect 8...)
 
-## Wireframe  (Your wireframes go here. Preferably two or more) 
+*** CONNECT ***
 
-*** see images folder ***
+ABOUT: 
 
-## Initial thoughts on game structure 
+This game is a variation of the classic connect four.  The difference is that you can decide the size of your board/how many tiles in a row that you want to match.  There are three branches in the GitHub, two that are my personal spin on the game, and one (vanilla) that is a standard game of connect four.
 
-Game will start with the a createBoard(), standard 7 X 6 space board. 
+LANGUAGE:
 
-Save a pice as an object and reuse object by either yellow or red piece.
+Two versions of this game utilize Vanilla JavaScript (Vanilla and Vanilla_Recursive) to create an array behind the scenes and use the array to check for matches.  Each time a player clicks a div in the DOM, the array gets updated.  Then, a function is called to "re-paint" the DOM to represent the behind the scenes array.  
 
-User can click anywhere in column and piece will be 'gravity fed' and build up from there
+The other version of this game (master branch) uses JQuery to create the board, modify the board ("X" and "O") and then "read" the text in the DOM and check for matches.  This version uses a recirsive finction as well so the board size does not have to be a constant.
 
-use of recursive funciton to do the checkMatch().
+STAGES:
 
-
-## Phases of Completion  
-
-Step one: draw standard board and add pieces.
-	-create a board using dynamic css and javascript
-	-use pieces as objects
-
-step two: write check win function
-	PART A
-	-create the check function for a standard size board to check for win
-	PART B
-	-restructure the function to check for any size board
-	-use recursive function to preform a win check
-	-create this function independant of the size of the board.
-
-step three: expand size of the board
-	-create a 'you won' scenario that returns a new game with a larger board if the user won, return to standard size board  
-
-step four: high score screen
-	return a screen of score of how large the game board was provided a username and password.
-
-
-## Links and Resources  (Anything you've looked up so far or are thinking about using.)
--MDN for higher order functions and specifically recursive funcitons
-https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Functions
-
--classwork and homeworks
-
--work from codeacademy and kahn academy
-
--John, John, and John
+Every branch begins with a landing page, two require a gameboard size input, and player names.  Once inputs are in the board loads.  When there is a winner, the winning screen is displayed and the page reloads.
