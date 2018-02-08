@@ -1,4 +1,4 @@
-//script2.js is the secondary file for Ryan's Project Unit_01.  In this file I will attempt to go back through my code and restructure it, solving the connect four board with a different method, using an array to represent the DOM, solving the connect four logic and representing it by repainting it on the DOM.  I will also be using Vanilla JavaScript instead of using Jquery to exercise my ability in both forms of DOM manipulation.
+//This code Vanilla_Recursive is a variation of the file in the branch vanilla, however, this js file utilizes a recursive function as the win check for the board, allowing the user to input the desired size of the board.
 
 //***********************  GLOBAL VARIABLES  ********************************
 
@@ -423,9 +423,9 @@ if(winArr.includes(arr.length - 3)){
 			board.classList.add(`winner_board`)
 			setTimeout(removeBoard, 1000)
 			setTimeout(printWinner, 1500)
-			setTimeout(printWinner, 2500)
-			setTimeout(printWinner, 3500)
-			setTimeout(reload, 5000)
+			setTimeout(printWinner, 3000)
+			setTimeout(printWinner, 4500)
+			setTimeout(reload, 6000)
 		}
 }
 
